@@ -1,50 +1,41 @@
-# IA 4K de Fotos — atividade PFC
+# Odonto 4K — Simulador de Sorriso (atividade PFC)
 
-Aplicação web que corrige fotos de consultório odontológico (cor, exposição, ruído, nitidez e
-aumento leve de resolução) **sem IA generativa**: ela não redesenha nada, então o formato e a
-posição dos dentes continuam os da foto original. Tem login e cadastro de usuário.
+Aplicação web (Next.js) para dentistas simularem o sorriso do paciente com IA, montarem a
+proposta e acompanhar pacientes. Cópia do projeto `odonto4k` preparada para avaliação.
+
+## Login para avaliação
+
+- E-mail: `professor@odonto4k.app`
+- A senha é entregue separadamente. No código fica só o hash (`src/lib/professor.ts`).
+
+A conta é criada sozinha na subida do servidor, já com e-mail confirmado, plano Pro ativo por
+1 ano e 60 créditos. Também dá para criar conta pelo cadastro normal (`/criar-conta`), mas ele
+pede confirmação por e-mail, que só funciona com `RESEND_API_KEY` configurada.
 
 ## Como rodar
 
-Precisa de [Node.js](https://nodejs.org) 20 ou mais novo.
+Precisa de Node.js 22.5 ou mais novo (usa `node:sqlite`).
 
     npm install
-    npm start
+    npm run dev        # http://localhost:3000
 
-Abra http://localhost:4300 (para trocar a porta: `PORT=5000 npm start`).
+Os dados ficam em `./data` (SQLite + arquivos). Em produção na Vercel ficam em `/tmp/odonto4k`.
 
-## Login
+## Variáveis de ambiente (todas opcionais)
 
-- **Criar conta:** aba "Criar conta" na tela de entrada (e-mail + senha de 6+ caracteres).
-- **Conta de demonstração**, caso o cadastro não funcione: `professor@odonto4k.app`.
-  A senha é entregue separadamente; no código fica só o hash.
-
-Variáveis de ambiente opcionais: `SESSAO_SEGREDO` (fixa o segredo dos cookies entre reinícios),
-`DEMO_EMAIL` e `DEMO_HASH` (trocam a conta de demonstração; o hash é `sal:scrypt` em hexadecimal,
-gerado por `hashSenha` em `lib/auth.js`).
-
-## Como funciona
-
-1. Usuário entra (ou cria conta). A sessão é um cookie assinado com HMAC, válido por 7 dias.
-2. Envia a foto e escolhe o tipo (intraoral, sorriso, antes/depois, ambiente).
-3. O servidor aplica o pipeline de `lib/melhorar.js` (balanço de branco, níveis e gama,
-   redução de ruído, nitidez, contraste local e upscale de até 2x) usando a biblioteca `sharp`.
-4. A foto melhorada fica só em memória por 30 minutos e é comparada com a original por um
-   controle deslizante.
-
-## Estrutura
-
-| Arquivo | Função |
+| Variável | Para quê |
 | --- | --- |
-| `server.js` | API (Express), fila de 2 correções simultâneas, limite por IP, proteção por login |
-| `lib/melhorar.js` | Pipeline de correção e perfis por tipo de foto |
-| `lib/auth.js` | Cadastro, login (scrypt) e sessão por cookie assinado |
-| `public/entrar.html` | Tela de login e cadastro |
-| `public/index.html` | Tela do app: enviar foto, comparar antes/depois, salvar |
+| `PROFESSOR_EMAIL`, `PROFESSOR_SENHA` | Trocam a conta de avaliação |
+| `OPENAI_API_KEY` | Liga a geração de imagens por IA (sem ela a simulação fica indisponível) |
+| `RESEND_API_KEY`, `EMAIL_FROM` | Envio de e-mails (confirmação de conta, recuperação de senha) |
+| `APP_URL` | URL pública, usada nos links dos e-mails |
+| `DATA_DIR` | Pasta dos dados |
+| `ADMIN_EMAILS` | E-mails com acesso ao painel `/admin` |
+| `KIWIFY_*` | Checkout e webhook de pagamento (não usados na atividade) |
 
-## Limitações
+## Limitação na Vercel
 
-- Usuários cadastrados ficam em `data/usuarios.json`. Em hospedagens com disco temporário esse
-  arquivo some quando o serviço reinicia; a conta de demonstração continua funcionando.
-- Não há recuperação de senha, cota de fotos por usuário nem leitura de HEIC no servidor
-  (o navegador do iPhone já converte ao enviar).
+O banco é um arquivo SQLite no disco da função, que é temporário: contas criadas pelo cadastro e
+dados dos pacientes somem quando a função reinicia, e instâncias diferentes não compartilham o
+banco, então a sessão pode cair. A conta do professor é recriada a cada subida. Para uso real,
+hospede em um servidor com disco persistente.

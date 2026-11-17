@@ -1,0 +1,25 @@
+type P = { className?: string };
+const base = { fill: "none", stroke: "currentColor", strokeWidth: 1.8, strokeLinecap: "round" as const, strokeLinejoin: "round" as const, viewBox: "0 0 24 24" };
+
+export const IcInicio = (p: P) => (<svg {...base} {...p}><path d="M3 11.5 12 4l9 7.5" /><path d="M5.5 10v9.5h13V10" /></svg>);
+export const IcPacientes = (p: P) => (<svg {...base} {...p}><circle cx="9" cy="8" r="3.5" /><path d="M2.5 20c.6-3.6 3.2-5.5 6.5-5.5s5.9 1.9 6.5 5.5" /><path d="M16 4.8a3.5 3.5 0 0 1 0 6.4M18.5 14.9c1.7.9 2.7 2.6 3 5.1" /></svg>);
+export const IcMais = (p: P) => (<svg {...base} strokeWidth={2.4} {...p}><path d="M12 5v14M5 12h14" /></svg>);
+export const IcCreditos = (p: P) => (<svg {...base} {...p}><path d="M13 2 4.5 13.5H11L10 22l8.5-11.5H12z" /></svg>);
+export const IcConta = (p: P) => (<svg {...base} {...p}><circle cx="12" cy="8" r="4" /><path d="M4 21c.8-4 4-6 8-6s7.2 2 8 6" /></svg>);
+export const IcVoltar = (p: P) => (<svg {...base} strokeWidth={2.2} {...p}><path d="M15 5 8 12l7 7" /></svg>);
+export const IcCamera = (p: P) => (<svg {...base} {...p}><path d="M4 8h3l1.5-2.5h7L17 8h3v11H4z" /><circle cx="12" cy="13" r="3.5" /></svg>);
+export const IcGaleria = (p: P) => (<svg {...base} {...p}><rect x="3.5" y="4.5" width="17" height="15" rx="2" /><circle cx="9" cy="10" r="1.6" /><path d="m4 17 5-4.5 4 3.5 3-2.5 4 3.5" /></svg>);
+export const IcBrilho = (p: P) => (<svg {...base} {...p}><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1" /><circle cx="12" cy="12" r="3.2" /></svg>);
+export const IcDente = (p: P) => (<svg {...base} {...p}><path d="M7.2 4.2c1.9-1.2 3.4 0 4.8 0s2.9-1.2 4.8 0c2.4 1.6 1.6 5.6.7 7.8-.8 1.9-.9 7.2-2.3 7.6-1.5.4-1.4-4.6-3.2-4.6s-1.700 5-3.200 4.600c-1.400-.4-1.500-5.700-2.300-7.600-.9-2.200-1.700-6.200.7-7.800z" /></svg>);
+export const IcAlinhar = (p: P) => (<svg {...base} {...p}><rect x="3" y="8" width="4" height="8" rx="1.2" /><rect x="10" y="8" width="4" height="8" rx="1.2" /><rect x="17" y="8" width="4" height="8" rx="1.2" /><path d="M2 12h20" /></svg>);
+export const IcAnalise = (p: P) => (<svg {...base} {...p}><path d="M12 3v18M4 9h16M6 15c2 2.500 10 2.500 12 0" /></svg>);
+export const IcComparar = (p: P) => (<svg {...base} {...p}><rect x="3.500" y="5" width="17" height="14" rx="2" /><path d="M12 3v18M8 10l-2 2 2 2M16 10l2 2-2 2" /></svg>);
+export const IcEnviar = (p: P) => (<svg {...base} {...p}><path d="M21 3 10 14M21 3l-7 18-4-7-7-4z" /></svg>);
+export const IcBaixar = (p: P) => (<svg {...base} {...p}><path d="M12 4v11M7 11l5 5 5-5M5 20h14" /></svg>);
+export const IcLixo = (p: P) => (<svg {...base} {...p}><path d="M4 7h16M9 7V4.500h6V7M6.500 7l1 13h9l1-13" /></svg>);
+export const IcCheck = (p: P) => (<svg {...base} strokeWidth={2.400} {...p}><path d="m5 12.500 4.500 4.500L19 7.500" /></svg>);
+export const IcZoom = (p: P) => (<svg {...base} {...p}><circle cx="11" cy="11" r="6.500" /><path d="m16 16 5 5M11 8.500v5M8.500 11h5" /></svg>);
+export const IcGirar = (p: P) => (<svg {...base} {...p}><path d="M20 12a8 8 0 1 1-2.600-5.900" /><path d="M20 4v5h-5" /></svg>);
+export const IcCopiar = (p: P) => (<svg {...base} {...p}><rect x="8" y="8" width="12" height="12" rx="2" /><path d="M16 8V5.500A1.500 1.500 0 0 0 14.500 4h-9A1.500 1.500 0 0 0 4 5.500v9A1.500 1.500 0 0 0 5.500 16H8" /></svg>);
+export const IcFechar = (p: P) => (<svg {...base} strokeWidth={2.200} {...p}><path d="M6 6l12 12M18 6 6 18" /></svg>);
+export const IcOlho = (p: P) => (<svg {...base} {...p}><path d="M2.500 12S6 5.500 12 5.500 21.500 12 21.500 12 18 18.500 12 18.500 2.500 12 2.500 12z" /><circle cx="12" cy="12" r="2.800" /></svg>);
